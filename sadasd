@@ -850,7 +850,7 @@ library.__index = library
 function library.new(gameName)
 	local lib = setmetatable({
 		_name = gameName,
-		_gui = create("ScreenGui", { Name = "evov2", ZIndexBehavior = Enum.ZIndexBehavior.Sibling }, {
+		_gui = create("ScreenGui", { Name = "Boob.Ware", ZIndexBehavior = Enum.ZIndexBehavior.Sibling }, {
 			create("Frame", { Name = "main", BackgroundColor3 = "theme.mainBackground", ClipsDescendants = true, Position = UDim2.new(0, 100, 0, 100), Size = UDim2.new(0, 535, 0, 380) }, {
 				create("ScrollingFrame", { Name = "dashboard", BackgroundTransparency = 1, BorderSizePixel = 0, BottomImage = "rbxassetid://7702689828", ClipsDescendants = true, MidImage = "rbxassetid://7702695076", Position = UDim2.new(0, 5, 0, 39), ScrollBarImageColor3 = "theme.panelBackground", ScrollBarThickness = 5, Size = UDim2.new(1, -10, 0, 315), TopImage = "rbxassetid://7702696403" }, {
 					create("UIGridLayout", { Name = "uigrid", CellPadding = UDim2.new(0, 5, 0, 5), CellSize = UDim2.new(0, 255, 0, 0), FillDirectionMaxCells = 2, SortOrder = Enum.SortOrder.LayoutOrder })
@@ -979,7 +979,7 @@ end
 
 function library:GetConfigs()
 	local configs = {}
-	if isfolder("EvoV2\\Configs\\" .. self._name) then
+	if isfolder("boob.ware\\Configs\\" .. self._name) then
 		for i, v in next, listfiles("EvoV2\\Configs\\" .. self._name) do
 			local split = select(-1, unpack(v:split("\\")))
 			if split:find(".json") then
@@ -991,8 +991,8 @@ function library:GetConfigs()
 end
 
 function library:LoadConfig(name)
-	local filePath = "EvoV2\\Configs\\" .. self._name .. "\\" .. name .. ".json"
-	if not (isfolder("EvoV2\\Configs\\" .. self._name) and isfile(filePath)) then
+	local filePath = "boob.ware\\Configs\\" .. self._name .. "\\" .. name .. ".json"
+	if not (isfolder("boob.ware\\Configs\\" .. self._name) and isfile(filePath)) then
 		return
 	end
 	local config = select(2, pcall(function() return httpService:JSONDecode(readfile(filePath)) end))
@@ -1016,10 +1016,10 @@ function library:LoadConfig(name)
 end
 
 function library:SaveConfig(name)
-	if not isfolder("EvoV2\\Configs\\" .. self._name) then
-		pcall(makefolder, "EvoV2")
-		pcall(makefolder, "EvoV2\\Configs")
-		pcall(makefolder, "EvoV2\\Configs\\" .. self._name)
+	if not isfolder("boob.ware\\Configs\\" .. self._name) then
+		pcall(makefolder, "boob.ware")
+		pcall(makefolder, "boob.ware\\Configs")
+		pcall(makefolder, "boob.ware\\Configs\\" .. self._name)
 	end
 	local config = {}
 	for _, tab in next, self._tabs do
@@ -1033,12 +1033,12 @@ function library:SaveConfig(name)
 			end
 		end
 	end
-	writefile("EvoV2\\Configs\\" .. self._name .. "\\" .. name .. ".json", httpService:JSONEncode(config))
+	writefile("boob.ware\\Configs\\" .. self._name .. "\\" .. name .. ".json", httpService:JSONEncode(config))
 end
 
 function library:DeleteConfig(name)
-	local filePath = "EvoV2\\Configs\\" .. self._name .. "\\" .. name .. ".json"
-	if not (isfolder("EvoV2\\Configs\\" .. self._name) and isfile(filePath)) then
+	local filePath = "boob.ware\\Configs\\" .. self._name .. "\\" .. name .. ".json"
+	if not (isfolder("boob.ware\\Configs\\" .. self._name) and isfile(filePath)) then
 		return
 	end
 	delfile(filePath)
@@ -1046,11 +1046,11 @@ end
 
 function library:GetThemes()
 	local themeNames = {}
-	if not isfolder("EvoV2\\Themes") then
-		pcall(makefolder, "EvoV2")
-		pcall(makefolder, "EvoV2\\Themes")
+	if not isfolder("boob.ware\\Themes") then
+		pcall(makefolder, "boob.ware")
+		pcall(makefolder, "boob.ware\\Themes")
 	end
-	for i, v in next, listfiles("EvoV2\\Themes") do
+	for i, v in next, listfiles("boob.ware\\Themes") do
 		local split = select(-1, unpack(v:split("\\")))
 		if split:find(".json") then
 			themeNames[#themeNames + 1] = split:gsub(".json", "")
@@ -1065,8 +1065,8 @@ function library:GetThemes()
 end
 
 function library:LoadTheme(name)
-	local filePath = "EvoV2\\Themes\\" .. name .. ".json"
-	if not (isfolder("EvoV2\\Themes") and isfile(filePath)) then
+	local filePath = "boob.ware\\Themes\\" .. name .. ".json"
+	if not (isfolder("boob.ware\\Themes") and isfile(filePath)) then
 		print("noes")
 		return
 	end
